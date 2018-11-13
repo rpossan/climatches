@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+# A gem to output colors in terminal commands. Useful for Rake Tasks
+gem 'colorize'
+
 # Environment settings
 gem 'dotenv'
 
