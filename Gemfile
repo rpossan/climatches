@@ -1,16 +1,25 @@
 source 'https://rubygems.org'
 
+#ruby=2.5.3
+
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
 
+# An ORM for API
+gem "her"
+# Middleware to cache API requests
+gem "faraday_middleware"
+# Cache management
+gem "memcached"
 # A gem to output colors in terminal commands. Useful for Rake Tasks
 gem 'colorize'
-
 # Environment settings
 gem 'dotenv'
-
+gem 'dotenv-rails'
+# ORM for Rest API
+gem 'her'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
 # Use PostgreSql as the database for Active Record
