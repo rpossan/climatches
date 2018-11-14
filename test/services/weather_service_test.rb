@@ -33,6 +33,7 @@ class WeatherServiceTest < Minitest::Test
   def test_weather_not_found
     error = assert_raises(RuntimeError){ @weather_service.find_by(city: "ABX") }
     assert_equal error.message, 'city not found'
+    error = assert_raises(RuntimeError){ @weather_service.find_by(latlon: {lat: "##"}) }
   end
 
 end
