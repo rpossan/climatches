@@ -20,12 +20,14 @@ class WeatherServiceTest < Minitest::Test
 
   def test_weather_by_city
     weather= @weather_service.find_by(city: "Campinas")
-    assert weather.city == "Campinas"
+    assert_equal weather.city, "Campinas"
+    assert_equal Integer, weather.temperature.class
   end
 
   def test_weather_by_latlon
     weather = @weather_service.find_by(latlon: @coords)
-    assert weather.city == "Campinas"
+    assert_equal weather.city, "Campinas"
+    assert_equal Integer, weather.temperature.class
   end
 
   def test_weather_not_found

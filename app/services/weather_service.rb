@@ -28,7 +28,7 @@ class WeatherService
     @filters[:query].merge!({q: city})
     @filters
   end
-  
+
   def get_by_latlon(lat, lon)
     @filters[:query].merge!({lat: lat, lon: lon})
     @filters
