@@ -18,7 +18,7 @@ class WeatherService
       @filters = get_by_city(city) unless city.empty?
       @filters = get_by_latlon(latlon[:lat], latlon[:lon]) unless latlon.empty?
     end
-    response = self.class.get("/weather", @filters)
+    response = self.class.get("/#{type}", @filters)
     data = parse! response
     Weather.create data
   end
