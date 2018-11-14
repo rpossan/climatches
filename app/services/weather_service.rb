@@ -2,14 +2,18 @@ class WeatherService
   include HTTParty
   base_uri "#{ENV['OWM_ENDPOINT']}/#{ENV['OWM_VERSION']}"
 
-  attr_accessor :id, :name, :temperature
+  attr_accessor :appid
 
   def initialize(appid=nil)
     appid = ENV['OWM_APPID'] if appid.nil?
     @filters = { query: { appid: appid } }
   end
 
-  def find_by(latlon:{}, city:"")
+  def forecast_by(latlon:{}, city:"")
+    find_by(latlon: latlon, city:city, type: "forecast")
+  end
+
+  def find_by(latlon:{}, city:"", type:"weather")
     unless latlon.empty? && city.empty?
       @filters = get_by_city(city) unless city.empty?
       @filters = get_by_latlon(latlon[:lat], latlon[:lon]) unless latlon.empty?
@@ -41,4 +45,6 @@ class WeatherService
       lon: data["coord"]["lon"]
     }
   end
+
+  alias weather_by find_by
 end
