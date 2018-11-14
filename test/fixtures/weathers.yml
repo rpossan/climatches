@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  city: 
+  : 
+  lat: 
+  lat: 
+  long: 
+  long: 
+
+two:
+  city: 
+  : 
+  lat: 
+  lat: 
+  long: 
+  long: 
