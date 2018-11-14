@@ -1,17 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  city: 
-  : 
-  lat: 
-  lat: 
-  long: 
-  long: 
+campinas:
+  city_id: 1,
+  city: Campinas,
+  lat: 0,
+  lon: 0,
+  temperature: 303
 
-two:
-  city: 
-  : 
-  lat: 
-  lat: 
-  long: 
-  long: 
+goncalves:
+  city_id: 2,
+  city: Gonçalves,
+  lat: -23,
+  lon: 45,
+  temperature: 257

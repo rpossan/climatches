@@ -19,10 +19,6 @@ class WeatherService
     Weather.create data
   end
 
-  def to_celsius
-    temperature - 273.15
-  end
-
   private
   def get_by_city(city)
     @filters[:query].merge!({q: city})
