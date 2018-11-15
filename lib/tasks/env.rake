@@ -30,4 +30,5 @@ namespace :env do
     end
     puts "'default.env' was updated succesfully!".green
   end
+
 end

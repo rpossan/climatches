@@ -1,16 +1,19 @@
 source 'https://rubygems.org'
 
+#ruby=2.5.3
+
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
 
+
 # A gem to output colors in terminal commands. Useful for Rake Tasks
 gem 'colorize'
-
 # Environment settings
 gem 'dotenv'
-
+# A gem to make rest requests API
+gem 'httparty'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
 # Use PostgreSql as the database for Active Record
@@ -33,6 +36,7 @@ gem 'puma', '~> 3.7'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'simplecov'
 end
 
 group :development do
@@ -40,6 +44,13 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop'
+  gem 'brakeman'
+  gem 'rubycritic'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
