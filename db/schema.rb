@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181114170209) do
+ActiveRecord::Schema.define(version: 20181116113445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categoys", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "forecasts", force: :cascade do |t|
+    t.bigint "weather_id"
+    t.date "date"
+    t.float "degrees"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["weather_id"], name: "index_forecasts_on_weather_id"
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.bigint "playlist_id_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["playlist_id_id"], name: "index_tracks_on_playlist_id_id"
+  end
 
   create_table "weathers", force: :cascade do |t|
     t.string "city"
@@ -25,4 +54,5 @@ ActiveRecord::Schema.define(version: 20181114170209) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "forecasts", "weathers"
 end
