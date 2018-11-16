@@ -19,4 +19,10 @@ class WeatherTest < ActiveSupport::TestCase
     assert_equal 29, @campinas.celcius
   end
 
+  def test_average_degrees
+    weather = WeatherService.new.forecast_by(city: "campinas")
+    assert_equal Integer, weather.average_degrees.class
+    assert weather.average_degrees > 0
+  end
+
 end
