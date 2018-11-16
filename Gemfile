@@ -7,7 +7,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+# Cache for HTTP Request
+gem 'dry_ice'
+# Geocoding
+gem 'geocoder'
+# A Ruby gem wrapper for Spotify Web API
+gem 'rspotify'
 # A gem to output colors in terminal commands. Useful for Rake Tasks
 gem 'colorize'
 # Environment settings

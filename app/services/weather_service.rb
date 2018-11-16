@@ -1,6 +1,8 @@
 class WeatherService
   include HTTParty
+  include HTTParty::DryIce
   base_uri "#{ENV['OWM_ENDPOINT']}/#{ENV['OWM_VERSION']}"
+  cache Rails.cache
 
   attr_accessor :appid
 
@@ -10,20 +12,45 @@ class WeatherService
   end
 
   def forecast_by(latlon:{}, city:"")
-    find_by(latlon: latlon, city:city, type: "forecast")
+    weather = find_by(latlon: latlon, city:city, forecast: true)
   end
 
-  def find_by(latlon:{}, city:"", type:"weather")
-    unless latlon.empty? && city.empty?
-      @filters = get_by_city(city) unless city.empty?
-      @filters = get_by_latlon(latlon[:lat], latlon[:lon]) unless latlon.empty?
+  def find_by(latlon:{}, city:"", forecast:false)
+    city = city.downcase unless city.empty?
+    cached_weather = Weather.where(city: city).or(
+      Weather.where(lat: latlon[:lat], lon: latlon[:lon])
+    ).limit(1).first
+
+    unless cached_weather
+      unless latlon.empty? && city.empty?
+        @filters = get_by_city(city) unless city.empty?
+        @filters = get_by_latlon(latlon[:lat], latlon[:lon]) unless latlon.empty?
+      end
+
+      response = self.class.get("/weather", @filters)
+      data = parse! response
+      cached_weather = Weather.create data
     end
-    response = self.class.get("/#{type}", @filters)
-    data = parse! response
-    Weather.create data
+    generate_forecast_for cached_weather if forecast
+    cached_weather
   end
+
 
   private
+
+  def generate_forecast_for(weather)
+    @filters[:query].merge!({q: weather.city})
+    response = self.class.get("/forecast", @filters)
+    response.parsed_response["list"].each do |forecast|
+      atts = {
+        weather_id: weather.id,
+        date: forecast["dt_txt"],
+        degrees: forecast["main"]["temp"]
+      }
+      Forecast.where(atts).first_or_create
+    end
+  end
+
   def get_by_city(city)
     @filters[:query].merge!({q: city})
     @filters
@@ -38,7 +65,7 @@ class WeatherService
     data = data.parsed_response
     raise data["message"] if data["cod"] != 200
     {
-      city: data["name"],
+      city: data["name"].downcase,
       city_id: data["id"],
       temperature: data["main"]["temp"],
       lat: data["coord"]["lat"],
