@@ -12,7 +12,7 @@ class WeatherService
   end
 
   def forecast_by(latlon:{}, city:"")
-    weather = find_by(latlon: latlon, city:city, forecast: true)
+    find_by(latlon: latlon, city:city, forecast: true)
   end
 
   def find_by(latlon:{}, city:"", forecast:false)
@@ -32,7 +32,7 @@ class WeatherService
       cached_weather = Weather.create data
     end
     generate_forecast_for cached_weather if forecast
-    cached_weather
+    return cached_weather
   end
 
 

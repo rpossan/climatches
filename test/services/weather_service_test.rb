@@ -19,13 +19,13 @@ class WeatherServiceTest < Minitest::Test
   end
 
   def test_find_by_city
-    weather= @weather_service.find_by(city: "campinas")
+    weather = @weather_service.find_by(city: "campinas")
     assert_equal weather.city, "campinas"
     assert_equal Integer, weather.temperature.class
   end
 
   def test_weather_by_city
-    weather= @weather_service.weather_by(city: "campinas")
+    weather = @weather_service.weather_by(city: "campinas")
     assert_equal weather.city, "campinas"
     assert_equal Integer, weather.temperature.class
   end
@@ -40,6 +40,12 @@ class WeatherServiceTest < Minitest::Test
     error = assert_raises(RuntimeError){ @weather_service.weather_by(city: "ABX") }
     assert_equal error.message, 'city not found'
     error = assert_raises(RuntimeError){ @weather_service.weather_by(latlon: {lat: "789654"}) }
+  end
+
+  def test_forecast
+    weather = @weather_service.forecast_by(city: "campinas")
+    assert_equal weather.city, "campinas"
+    assert weather.forecasts.size > 0
   end
 
 end
