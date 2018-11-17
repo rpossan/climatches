@@ -30,8 +30,8 @@ class WeatherService
         response = self.class.get("/weather", @filters)
         data = parse! response
         cached_weather = Weather.create data
-      rescue
-        puts "Can't reach server!. Try again!"
+      rescue => error
+        raise error
       end
     end
     generate_forecast_for cached_weather if forecast
