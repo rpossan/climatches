@@ -10,7 +10,9 @@ end
 # Cache for HTTP Request
 gem 'dry_ice'
 # Geocoding
-gem 'geocoder'
+#gem 'geocoder'
+# A rails API versioning
+gem 'versionist'
 # A Ruby gem wrapper for Spotify Web API
 gem 'rspotify'
 # A gem to output colors in terminal commands. Useful for Rake Tasks

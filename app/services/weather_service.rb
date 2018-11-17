@@ -26,10 +26,13 @@ class WeatherService
         @filters = get_by_city(city) unless city.empty?
         @filters = get_by_latlon(latlon[:lat], latlon[:lon]) unless latlon.empty?
       end
-
-      response = self.class.get("/weather", @filters)
-      data = parse! response
-      cached_weather = Weather.create data
+      begin
+        response = self.class.get("/weather", @filters)
+        data = parse! response
+        cached_weather = Weather.create data
+      rescue
+        puts "Can't reach server!. Try again!"
+      end
     end
     generate_forecast_for cached_weather if forecast
     return cached_weather
@@ -39,15 +42,19 @@ class WeatherService
   private
 
   def generate_forecast_for(weather)
-    @filters[:query].merge!({q: weather.city})
-    response = self.class.get("/forecast", @filters)
-    response.parsed_response["list"].each do |forecast|
-      atts = {
-        weather_id: weather.id,
-        date: forecast["dt_txt"],
-        degrees: forecast["main"]["temp"]
-      }
-      Forecast.where(atts).first_or_create
+    begin
+      @filters[:query].merge!({q: weather.city})
+      response = self.class.get("/forecast", @filters)
+      response.parsed_response["list"].each do |forecast|
+        atts = {
+          weather_id: weather.id,
+          date: forecast["dt_txt"],
+          degrees: forecast["main"]["temp"]
+        }
+        Forecast.where(atts).first_or_create
+      end
+    rescue
+      puts "Can't reach server! Using cache!"
     end
   end
 

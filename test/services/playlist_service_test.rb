@@ -7,6 +7,7 @@ class PlaylistServiceTest < Minitest::Test
   def setup
     DatabaseCleaner.start
     @playlist_service = PlaylistService.new
+    PlaylistService.fetch!
   end
 
   def teardown
@@ -17,36 +18,37 @@ class PlaylistServiceTest < Minitest::Test
     assert_instance_of PlaylistService, @playlist_service
   end
 
-  # def test_party
-  #   pl = @playlist_service.get_by_celcius(30)
-  #   refute_equal pl.name, "party"
-  #   pl = @playlist_service.get_by_celcius(31)
-  #   asert_equal pl.name, "party"
-  # end
+  def test_party
+    pl = @playlist_service.get_by_celsius(30)
+    refute_equal pl.name, "party"
+    pl = @playlist_service.get_by_celsius(31)
+    byebug
+    assert_equal pl.first.name, "party"
+  end
 
-  # def test_pop
-  #   pl = @playlist_service.get_by_celcius(14)
-  #   refute_equal pl.name, "pop"
-  #   pl = @playlist_service.get_by_celcius(31)
-  #   refute_equal pl.name, "pop"
-  #   pl = @playlist_service.get_by_celcius(18)
-  #   asert_equal pl.name, "pop"
-  # end
+  def test_pop
+    pl = @playlist_service.get_by_celsius(14)
+    refute_equal pl.first.name, "pop"
+    pl = @playlist_service.get_by_celsius(31)
+    refute_equal pl.first.name, "pop"
+    pl = @playlist_service.get_by_celsius(18)
+    assert_equal pl.first.name, "pop"
+  end
 
-  # def test_rock
-  #   pl = @playlist_service.get_by_celcius(9)
-  #   refute_equal pl.name, "rock"
-  #   pl = @playlist_service.get_by_celcius(15)
-  #   refute_equal pl.name, "rock"
-  #   pl = @playlist_service.get_by_celcius(12)
-  #   asert_equal pl.name, "rock"
-  # end
+  def test_rock
+    pl = @playlist_service.get_by_celsius(9)
+    refute_equal pl.first.name, "rock"
+    pl = @playlist_service.get_by_celsius(15)
+    refute_equal pl.first.name, "rock"
+    pl = @playlist_service.get_by_celsius(12)
+    assert_equal pl.first.name, "rock"
+  end
 
-  # def test_classical
-  #   pl = @playlist_service.get_by_celcius(10)
-  #   refute_equal pl.name, "classical"
-  #   pl = @playlist_service.get_by_celcius(9)
-  #   asert_equal pl.name, "classical"
-  # end
+  def test_classical
+    pl = @playlist_service.get_by_celsius(10)
+    refute_equal pl.first.name, "classical"
+    pl = @playlist_service.get_by_celsius(9)
+    assert_equal pl.first.name, "classical"
+  end
 
 end
