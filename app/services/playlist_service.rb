@@ -23,18 +23,19 @@ class PlaylistService
     category = "rock" if (10..14).include? degrees
     category = "pop" if (15..30).include? degrees
     category = "party" if degrees > 30
-    Playlist.where(category: category)
+    Playlist.where(category: category).first
   end
 
   def fetch!
     ActiveRecord::Base.transaction do
       begin
         Playlist.destroy_all
+        Track.destroy_all
         CATEGORIES.each do |cat|
           RSpotify::Category.find(cat).playlists.each do |pl|
-            pl = Playlist.new(category: cat)
-            pl.tracks = pl.tracks.collect{|t| {name: t.name} }
-            pl.save
+            new_pl = Playlist.find_or_create_by(category: cat)
+            new_pl.tracks = pl.tracks.collect{|t| Track.new({name: t.name})}
+            new_pl.save
           end
         end
         true
