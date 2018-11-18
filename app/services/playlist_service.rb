@@ -28,7 +28,7 @@ class PlaylistService
 
   def fetch!
     ActiveRecord::Base.transaction do
-      begin
+      #begin
         Playlist.destroy_all
         Track.destroy_all
         CATEGORIES.each do |cat|
@@ -39,11 +39,11 @@ class PlaylistService
           end
         end
         true
-      rescue
-        puts "Can't reach server. Using cache!"
-        ActiveRecord::Rollback
-        false
-      end
+      # rescue
+      #   puts "Can't reach server. Using cache!"
+      #   ActiveRecord::Rollback
+      #   false
+      # end
     end
   end
 
