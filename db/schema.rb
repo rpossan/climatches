@@ -37,11 +37,11 @@ ActiveRecord::Schema.define(version: 20181116113445) do
   end
 
   create_table "tracks", force: :cascade do |t|
-    t.bigint "playlist_id_id"
+    t.bigint "playlist_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["playlist_id_id"], name: "index_tracks_on_playlist_id_id"
+    t.index ["playlist_id"], name: "index_tracks_on_playlist_id"
   end
 
   create_table "weathers", force: :cascade do |t|
