@@ -25,8 +25,4 @@ test:
 
 production:
   adapter:  postgresql
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV['PG_HOST'] %>
-  database: <%= ENV['PG_DATABASE'] %>
-  username: <%= ENV['PG_USER'] %>
-  password: <%= ENV['PG_pass'] %>
+
