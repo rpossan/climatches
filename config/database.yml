@@ -8,7 +8,7 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   adapter:  postgresql
   host:     localhost
-  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: postgres
   password: 123456
   template: template0
@@ -25,5 +25,8 @@ test:
   database: climatches_test
 
 production:
-  <<: *default
-  database: climatches_production
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV['PG_HOST'] %>
+  database: <%= ENV['PG_DATABASE'] %>
+  username: <%= ENV['PG_USER'] %>
+  password: <%= ENV['PG_pass'] %>
