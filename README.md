@@ -80,7 +80,7 @@ Quando usada a cache, a temperatura é baseada na média do dia, conforme pode s
 
 ```ruby
 def average_degrees(date=Date.today)
-  forecasts.where(date: Date.today).average(:degrees).to_i
+  forecasts.where(date: date).average(:degrees).to_i
 end
 ```
 
