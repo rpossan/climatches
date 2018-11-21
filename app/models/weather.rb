@@ -5,6 +5,6 @@ class Weather < ApplicationRecord
   end
 
   def average_degrees(date=Date.today)
-    forecasts.where(date: Date.today).average(:degrees).to_i
+    forecasts.where(date: date).average(:degrees).to_i
   end
 end
