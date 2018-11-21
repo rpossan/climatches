@@ -206,3 +206,5 @@ mais rápida
 * Cobertura de testes 100% e fazer code review
 
 * Criar V2 da api para fazer testes de interoperabilidade
+
+* Implementar testes de segurança e ataques
