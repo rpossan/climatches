@@ -112,7 +112,7 @@ Por cidade:
 Por GPS:
 >https://climatches.herokuapp.com/v1/playlists/27.023967/18.529390
 
-Todo o códigose encontra no controller "playlists_controller.rb" no qual utiliza das classes de serviço WeatherService e
+Todo o código se encontra no controller "playlists_controller.rb" no qual utiliza das classes de serviço WeatherService e
 PlaylistsService, econtrados ambos na pasta app/services.
 
 Neste caso, a única rota implementada foi a de playlists, que só recebe GET como método.
