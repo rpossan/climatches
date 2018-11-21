@@ -18,7 +18,7 @@ Este é um projeto-teste com base nos requisitos do exercício no link: https://
 
 ## 1 - Introdução
 
-Dados os requisitos tanto funcionais quanto funcionais, implementei uma solução de API baseada em REST e com arquitetura
+Dados os requisitos tanto funcionais quanto não funcionais, implementei uma solução de API baseada em REST e com arquitetura
 de versionamento garantindo retrocompatibilidade, disponibilidade e escalabilidade na evolução da mesma.
 Outro ponto que tomei como importante foi com relação aos requisitos não funcionais, onde tomei os cuidados para
 garantir a disponibilidade (responsível), resiliência e tolerante a falhas.
