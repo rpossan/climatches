@@ -159,7 +159,7 @@ numa única classe:
 ![](https://github.com/rpossan/files/blob/master/climatches/coverage_pending.png)
 
 
-> Nota A na maioria dos códigos, com poucas ocorrências com B e nenhuma abaixo disso. Classifiação 98.14/100
+> Nota A na maioria dos códigos, com poucas ocorrências com B e nenhuma abaixo disso. Classificação 98.14/100 em qualidade de código.
 
 ![](https://github.com/rpossan/files/blob/master/climatches/quality.png)
 
