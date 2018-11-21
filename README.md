@@ -107,7 +107,7 @@ seguidos da barra na separação de cada um, conforme nos exemplos abaixo:
 > https://climatches.herokuapp.com/v1/
 
 Por cidade:
->https://climatches.herokuapp.com/v1/campinas
+>https://climatches.herokuapp.com/v1/playlists/campinas
 
 Por GPS:
 >https://climatches.herokuapp.com/v1/playlists/27.023967/18.529390
