@@ -137,10 +137,6 @@ das playlists e tracks, porém estes parâmetros são ajustáveis.
 0 0,6,12,18 * * * /bin/bash -l -c 'cd /shared/climatches && bundle exec bin/rails runner -e production '\''WeatherForecastJob.perform'\'''
 ```
 
-## 5 - Solução API
-
-
-
 ## 6 - Qualidade
 
 > Todos os relatórios se encontram no repositório nas pastas "coverage/index.html" e "tmp/rubycritics/"
@@ -154,14 +150,17 @@ Para qualidade de código e cobertura de testes, utilizei das seguintes gems par
 
 ### Resultados
 > 99,44% de cobertura de testes
+
 ![](https://github.com/rpossan/files/blob/master/climatches/coverage.png)
 
 Não consegui alcançar 100% pois não consegui simular ou mockar um teste de falha de comunicação com a API,
 numa única classe:
+
 ![](https://github.com/rpossan/files/blob/master/climatches/coverage_pending.png)
 
 
 > Nota A na maioria dos códigos, com poucas ocorrências com B e nenhuma abaixo disso. Classifiação 98.14/100
+
 ![](https://github.com/rpossan/files/blob/master/climatches/quality.png)
 
 ## 7 - Deploy
@@ -176,18 +175,28 @@ Porém deixei criado um Dockerfile na raiz do projeto para criação básica do 
 Segue abaixo algumas screenshots para evidenciar alguns testes que eu fiz com a aplicação em produção no heroku:
 
 New York - 7 graus - Música Clássica:
+
 ![](https://github.com/rpossan/files/blob/master/climatches/newyork.png)
+
 Por GPS:
+
 ![](https://github.com/rpossan/files/blob/master/climatches/newyork_gps.png)
+
 Temperatura
+
 ![](https://github.com/rpossan/files/blob/master/climatches/newyork_temp.png)
 
 Darwin - 32 graus - Party Music
+
 ![](https://github.com/rpossan/files/blob/master/climatches/darwin.png)
+
 Temperatura:
+
 ![](https://github.com/rpossan/files/blob/master/climatches/darwin_temp.png)
 
+
 Cidade não encontrada:
+
 ![](https://github.com/rpossan/files/blob/master/climatches/not_found.png)
 
 ## 9 - Melhorias Previstas
