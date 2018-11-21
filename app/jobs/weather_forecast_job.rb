@@ -3,7 +3,11 @@ class WeatherForecastJob < ApplicationJob
 
   def perform(*args)
     Weather.all.each do |w|
-      WeatherService.new.forecast_by(city: w.city)
+      begin
+        WeatherService.new.forecast_by(city: w.city)
+      rescue
+        puts "City #{w.city} not found!"
+      end
     end
   end
 end

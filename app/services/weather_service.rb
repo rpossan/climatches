@@ -31,7 +31,7 @@ class WeatherService
         data = parse! response
         cached_weather = Weather.create data
       rescue => error
-        raise error
+        return false
       end
     end
     generate_forecast_for cached_weather if forecast

@@ -8,7 +8,8 @@
 /default.env
 
 # Test coverage report
-/coverage
+#/coverage
+
 
 # Ignore bundler config.
 /.bundle
@@ -22,5 +23,6 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+!/tmp/rubycritic/
 
 .byebug_history
