@@ -22,11 +22,8 @@ class WeatherService
     ).limit(1).first
 
     unless cached_weather
-      unless latlon.empty? && city.empty?
-        @filters = get_by_city(city) unless city.empty?
-        @filters = get_by_latlon(latlon[:lat], latlon[:lon]) unless latlon.empty?
-      end
       begin
+        city.empty? ? filter_by_latlon(latlon[:lat], latlon[:lon]) : filter_by_city(city)
         response = self.class.get("/weather", @filters)
         data = parse! response
         cached_weather = Weather.create data
@@ -34,10 +31,10 @@ class WeatherService
         return false
       end
     end
+    
     generate_forecast_for cached_weather if forecast
-    return cached_weather
+    cached_weather
   end
-
 
   private
 
@@ -58,14 +55,12 @@ class WeatherService
     end
   end
 
-  def get_by_city(city)
+  def filter_by_city(city)
     @filters[:query].merge!({q: city})
-    @filters
   end
 
-  def get_by_latlon(lat, lon)
+  def filter_by_latlon(lat, lon)
     @filters[:query].merge!({lat: lat, lon: lon})
-    @filters
   end
 
   def parse! data
