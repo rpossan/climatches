@@ -97,7 +97,7 @@
 
     <code class="prettyprint linenums lang-ruby file-code js-file-code">class Weather &lt; ApplicationRecord<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Irresponsible-Module.md" target="_blank"><b>IrresponsibleModule</b></a>        </span>      </div>      <span>Weather has no descriptive comment</span>          </div>  </li></ol>
   has_many :forecasts
-  def celcius
+  def celsius
     (temperature - 273.15).to_i
   end
 

@@ -14,9 +14,9 @@ class WeatherTest < ActiveSupport::TestCase
     assert_instance_of Weather, @campinas
   end
 
-  def test_to_celcius
+  def test_to_celsius
     @campinas.temperature = 303
-    assert_equal 29, @campinas.celcius
+    assert_equal 29, @campinas.celsius
   end
 
   def test_average_degrees
