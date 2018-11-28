@@ -15,7 +15,7 @@ class PlaylistServiceTest < Minitest::Test
   end
 
   def test_offline
-    assert_equal false, PlaylistService.new("test", "test").logged
+    assert_equal false, PlaylistService.new("test", "test").authenticate!.logged
     assert_equal true, PlaylistService.new("abc", "xyz").fetch!
   end
 

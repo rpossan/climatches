@@ -7,6 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'sidekiq'
 # Crontab scheduler
 gem 'whenever'
 # Cache for HTTP Request

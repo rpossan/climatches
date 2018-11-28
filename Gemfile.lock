@@ -56,6 +56,7 @@ GEM
       descendants_tracker (~> 0.0.1)
     colorize (0.8.1)
     concurrent-ruby (1.1.3)
+    connection_pool (2.2.2)
     crass (1.0.4)
     database_cleaner (1.7.0)
     descendants_tracker (0.0.4)
@@ -143,6 +144,8 @@ GEM
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.6)
+    rack-protection (2.0.4)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.1.6)
@@ -173,6 +176,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    redis (4.0.3)
     reek (4.8.2)
       codeclimate-engine-rb (~> 0.4.0)
       parser (>= 2.5.0.0, < 2.6)
@@ -207,6 +211,10 @@ GEM
       tty-which (~> 0.3.0)
       virtus (~> 1.0)
     sexp_processor (4.11.0)
+    sidekiq (5.2.3)
+      connection_pool (~> 2.2, >= 2.2.2)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
     simplecov (0.16.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -267,12 +275,16 @@ DEPENDENCIES
   rspotify
   rubocop
   rubycritic
+  sidekiq
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
   versionist
   whenever
+
+RUBY VERSION
+   ruby 2.5.3p105
 
 BUNDLED WITH
    1.16.2

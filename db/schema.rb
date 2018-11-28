@@ -15,15 +15,9 @@ ActiveRecord::Schema.define(version: 20181116113445) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categoys", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "forecasts", force: :cascade do |t|
     t.bigint "weather_id"
-    t.date "date"
+    t.datetime "date"
     t.float "degrees"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -48,11 +42,12 @@ ActiveRecord::Schema.define(version: 20181116113445) do
     t.string "city"
     t.integer "city_id"
     t.integer "temperature"
-    t.decimal "lat", precision: 5, scale: 2
-    t.decimal "lon", precision: 5, scale: 2
+    t.decimal "lat", precision: 6, scale: 2
+    t.decimal "lon", precision: 6, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "forecasts", "weathers"
+  add_foreign_key "tracks", "playlists"
 end
