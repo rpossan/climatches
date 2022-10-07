@@ -8,14 +8,14 @@ class V1::PlaylistsController < ApplicationController
       weather = w_service.find_by(filter)
       if weather
         pl_service = PlaylistService.new
-        playlist = pl_service.get_by_celsius(weather.forecast_celsius(Time.now), force_fetch)
-        @playlist = { category: playlist.category, total: playlist.tracks.size, status: "success" }
+        degrees = weather.forecast_celsius Time.now
+        playlist = pl_service.get_by_celsius(degrees, force_fetch)
+        @playlist = { forecast_degrees: degrees, category: playlist.category, total: playlist.tracks.size, status: "success" }
         @playlist[:tracks] = playlist.tracks.map{|t| t.name }
-        render json: @playlist, status: :ok
       else
-        @playlist =  { status: "error", message: "City not found!" }
-        render json: @playlist, status: :ok
+        @playlist = { status: "error", message: "City not found!" }
       end
+      render json: @playlist, status: :ok
     rescue => error
      render json: { status: "error", message: error.message.to_s }, status: :error
     end
